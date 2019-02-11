@@ -1,0 +1,36 @@
+.ids { color:red; }
+.numeros { color: purple;  }
+.ops { color:blue;  }
+.separador {
+    color:chocolate;
+}
+.startComment{
+    color:gray;
+}
+.palabraRes{
+    color:green;
+}
+.hexad{
+    color:orangered;
+}
+.octal{
+    color:plum;
+}
+.literal{
+    color:skyblue;
+}
+.estiloX{
+    color:antiquewhite;
+}
+.estiloY{
+    color:aquamarine;
+}
+.estiloZ{
+    color:coral;
+}
+.escapedChar{
+    color:yellowgreen;
+}
+.char{
+    color:black;
+}
