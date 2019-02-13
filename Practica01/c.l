@@ -10,103 +10,104 @@ IS			(u|U|l|L)*
 %}
 
 %%
-"/*"			    { printf( "<p class=\"startComment\">%s</p>", yytext ); }
+"/*"			    { printf( "<span class=\"startComment\">%s</span>", yytext ); }
 
-"auto"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"break"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"case"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"char"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"const"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"continue"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"default"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"do"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"double"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"else"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"enum"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"extern"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"float"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"for"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"goto"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"if"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"int"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"long"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"register"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"return"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"short"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"signed"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"sizeof"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"static"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"struct"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"switch"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"typedef"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"union"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"unsigned"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"void"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"volatile"		    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
-"while"			    { printf( "<p class=\"palabraRes\">%s</p>", yytext ); }
+"auto"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"break"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"case"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"char"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"const"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"continue"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"default"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"do"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"double"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"else"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"enum"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"extern"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"float"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"for"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"goto"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"if"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"int"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"long"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"register"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"return"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"short"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"signed"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"sizeof"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"static"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"struct"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"switch"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"typedef"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"union"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"unsigned"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"void"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"volatile"		    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
+"while"			    { printf( "<span class=\"palabraRes\">%s</span>", yytext ); }
 
-{L}({L}|{D})*		{ printf( "<p class=\"ids\">%s</p>", yytext ); }
+{L}({L}|{D})*		{ printf( "<span class=\"ids\">%s</span>", yytext ); }
 
-0[xX]{H}+{IS}?		{ printf( "<p class=\"hexad\">%s</p>", yytext ); }
-0{D}+{IS}?		    { printf( "<p class=\"octal\">%s</p>", yytext ); }
-{D}+{IS}?		    { printf( "<p class=\"literal\">%s</p>", yytext ); }
-L?'(\\.|[^\\'])+'	{ printf( "<p class=\"estiloX\">%s</p>", yytext ); }
+0[xX]{H}+{IS}?		{ printf( "<span class=\"hexad\">%s</span>", yytext ); }
+0{D}+{IS}?		    { printf( "<span class=\"octal\">%s</span>", yytext ); }
+{D}+{IS}?		    { printf( "<span class=\"literal\">%s</span>", yytext ); }
+L?'(\\.|[^\\'])+'	{ printf( "<span class=\"estiloX\">%s</span>", yytext ); }
 
-{D}+{E}{FS}?		{ printf( "<p class=\"literal\">%s</p>", yytext ); }
-{D}+"."             { printf( "<p class=\"estiloY\">%s</p>", yytext ); }
+{D}+{E}{FS}?		{ printf( "<span class=\"literal\">%s</span>", yytext ); }
+{D}+"."             { printf( "<span class=\"estiloY\">%s</span>", yytext ); }
 
-L?\"(\\.|[^\\"])*\"	{ printf( "<p class=\"estiloZ\">%s</p>", yytext ); }
+L?\"(\\.|[^\\"])*\"	{ printf( "<span class=\"estiloZ\">%s</span>", yytext ); }
 
-"..."			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-">>="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"<<="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"+="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"-="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"*="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"/="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"%="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"&="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"^="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"|="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-">>"			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"<<"			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"++"			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"--"			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"->"			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"&&"			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"||"			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"<="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-">="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"=="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-"!="			{ printf( "<p class=\"ops\">%s</p>", yytext ); }
-";"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-("{"|"<%")      { printf( "<p class=\"separador\">%s</p>", yytext ); }
-("}"|"%>")      { printf( "<p class=\"separador\">%s</p>", yytext ); }
-","			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-":"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"="			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"("			    { printf( "<p class=\"separador\">%s</p>", yytext ); }
-")"			    { printf( "<p class=\"separador\">%s</p>", yytext ); }
-("["|"<:")      { printf( "<p class=\"ops\">%s</p>", yytext ); }
-("]"|":>")      { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"."			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"&"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"!"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"~"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"-"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"+"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"*"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"/"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"%"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"<"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-">"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"^"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"|"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
-"?"			    { printf( "<p class=\"ops\">%s</p>", yytext ); }
+"..."			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+">>="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"<<="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"+="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"-="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"*="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"/="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"%="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"&="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"^="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"|="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+">>"			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"<<"			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"++"			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"--"			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"->"			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"&&"			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"||"			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"<="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+">="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"=="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+"!="			{ printf( "<span class=\"ops\">%s</span>", yytext ); }
+";"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+("{"|"<%")      { printf( "<span class=\"separador\">%s</span>", yytext ); }
+("}"|"%>")      { printf( "<span class=\"separador\">%s</span>", yytext ); }
+","			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+":"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"="			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"("			    { printf( "<span class=\"separador\">%s</span>", yytext ); }
+")"			    { printf( "<span class=\"separador\">%s</span>", yytext ); }
+("["|"<:")      { printf( "<span class=\"ops\">%s</span>", yytext ); }
+("]"|":>")      { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"."			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"&"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"!"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"~"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"-"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"+"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"*"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"/"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"%"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"<"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+">"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"^"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"|"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
+"?"			    { printf( "<span class=\"ops\">%s</span>", yytext ); }
 
-[ \t\v\f]		{ printf( "<p class=\"escapedChar\">%s</p>", yytext ); }
-[\n]		{ printf( "<br>" ); }
-.			    { printf( "<p class=\"char\">%s</p>", yytext ); }
+[ \v\f]		{ printf( "<span class=\"escapedChar\">%s</span>", yytext ); }
+[\t]		{ printf( "&nbsp;&nbsp;&nbsp;&nbsp;" ); }
+[\n]		{ printf( "<br/>" ); }
+.			    { printf( "<span class=\"char\">%s</span>", yytext ); }
 
 %%
 
