@@ -1,0 +1,56 @@
+digraph AFN{
+    rankdir = LR;
+    node [shape = "circle"];
+    I [shape="plaintext"];
+    n30 [shape=doublecircle];
+    n1 [name="1"];
+    I -> n1 [label="Inicial", color="red"];
+    n1 -> n2 [label="&epsilon;"];
+    
+    n2 -> n3 [label="&epsilon;"];
+    n3 -> n4 [label="&epsilon;"];
+    n3 -> n18 [label="&epsilon;"];
+
+    n4 -> n5 [label="&epsilon;"];
+    n4 -> n11 [label="&epsilon;"];
+
+    n5 -> n6 [label="a"];
+    n6 -> n7 [label="&epsilon;"];
+    n7 -> n8 [label="b"];
+    n8 -> n9 [label="&epsilon;"];
+    n9 -> n10 [label="&epsilon;"];
+    n10 -> n17 [label="&epsilon;"];
+    
+    n11 -> n12 [label="c"];
+    n12 -> n13 [label="b"];
+    n13 -> n14 [label="&epsilon;"];
+    n13 -> n16 [label="&epsilon;"];
+    n14 -> n15 [label="a"];
+    n15 -> n14 [label="&epsilon;"];
+    n15 -> n16 [label="&epsilon;"];
+    n16 -> n17 [label="&epsilon;"];
+
+    n17 -> n21 [label="&epsilon;"];
+
+    n18 -> n19 [label="c"];
+    n19 -> n20 [label="b"];
+    n20 -> n22 [label="&epsilon;"];
+
+    n21 -> n22 [label="&epsilon;"];
+    n22 -> n3 [label="&epsilon;"];
+    n22 -> n23 [label="&epsilon;"];
+    n22 -> n26 [label="&epsilon;"];
+    n23 -> n24 [label="c"];
+    n24 -> n25 [label="c"];
+    n25 -> n23 [label="&epsilon;"];
+    n25 -> n26 [label="&epsilon;"];
+
+    n26 -> n30 [label="&epsilon;"];
+    
+
+    n1 -> n27 [label="&epsilon;"];
+    n27 -> n28 [label="c"];
+    n28 -> n29 [label="b"];
+    n29 -> n30 [label="&epsilon;", peripheries="4"];
+
+}

@@ -1,0 +1,8 @@
+Se hicieron grafos gráficos xD
+
+Con el compilador DOT
+
+
+y se hacía con los archivos .gv
+
+Se compilaba con dot archivo.gv -Tpng > img.png
