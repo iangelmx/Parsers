@@ -29,3 +29,61 @@ class Pila():
 
 	def print(self):
 		print("Pila->",self.__pila)
+
+class Estado():
+
+	__label = None
+
+	#__edoAnt = None
+	#__edoSig = None
+
+	##__edoAnt = []
+	__edoSig = []
+
+	__transitionIn = []
+	__transitionOut = []
+	__isFinal = False
+	__isInitial = False
+
+	def __init__(self, edoSig, label, transitionToNext = None):
+		self.__label = label
+		##self.__edoAnt.append(edoAnt)
+		self.__edoSig.append(edoSig)
+
+		if transitionToNext is not None:
+			self.__transitionOut.append(simbol)
+		
+	# def set_previous_state(self, edoAnt):
+	# 	if edoAnt is not list:
+	# 		self.__edoAnt.append(edoAnt)
+	# 	else:
+	# 		self.__edoAnt.extend(edoAnt)
+	
+	def set_next_state(self, edoSig):
+		if edoSig is not list:
+			self.__edoSig.append(edoSig)
+		else:
+			self.__edoSig.extend(edoSig)
+	
+	def set_transition_to_this(self, simbol):
+		self.__transitionIn.append(simbol)
+
+	def set_transition_to_next(self, simbol):
+		self.__transitionOut.append(simbol)
+	
+	def set_type(self, tipo):
+		if tipo == 'final':
+			self.__isFinal = True
+		elif tipo == 'initial':
+			self.__isInitial = True
+	
+	def get_name(self):
+		return self.__label
+
+	def print_state_details(self):
+		print(
+			"Name:", self.__label, \
+			"Edo Sig:", self.__edoSig,"\nTransitions:\n\tIn:", self.__transitionIn, \
+			"\n\tOut:", self.__transitionOut,"\nIs Final?:",self.__isFinal, \
+			"Is Initial?:", self.__isInitial
+			)

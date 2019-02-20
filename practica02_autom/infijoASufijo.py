@@ -3,7 +3,11 @@
 import os
 import sys
 sys.path.append('./../')
-from aramirezLibs.estructuras import Pila
+from aramirezLibs.estructuras import Pila, Estado
+
+alfabeto = "abcdefghijklmnopqrstuvxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+operadores = "+|*."
+agrupadores = "()[]}{"
 
 def getPrecedence(char):
 	jerarquia = {
@@ -18,9 +22,9 @@ def getPrecedence(char):
 
 
 def infixToSufix(regexInfijo):
-	alfabeto = "abcdefghijklmnopqrstuvxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	operadores = "+|*."
-	agrupadores = "()[]}{"
+	#alfabeto = "abcdefghijklmnopqrstuvxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	#operadores = "+|*."
+	#agrupadores = "()[]}{"
 	pila = Pila()
 	salida = ""
 	for char in regexInfijo:
@@ -76,7 +80,10 @@ def infixToSufix(regexInfijo):
 
 	return salida
 
-
+def analiza_regex_sufijo(regexSufix):
+	for char in regexSufix:
+		if char in alfabeto:
+			
 
 if __name__ == '__main__':
 	regex = input("Dame la regex en infijo:\n")
