@@ -11,18 +11,29 @@ class Automata():
 
     dp = {}
 
-    tablaAutomata = {} """ 
+    tablaAutomata = {} 
+    """ 
     1 : {'Eps':[5,6,7], 'a':[1], 'b': [2], 'c':[None]} 
     2 : {'Eps':[], 'a':1, 'b': 3, 'c':4} 
     2 : {'Eps':[6], 'a':1, 'b': 3, 'c':4} 
     """
+    nEstado = 0
 
-    def __init__(self, labelInicial):
+    def __init__(self, labelInicial, alfabeto):
         self.__estado_inicial = labelInicial
+        self.nEstado = int(labelInicial)
         q1 = Estado(None, None, labelInicial)
         self.__estados.append( q1 )
     
     def create_simbol_transition(self, label, transitionChar):
+        self.nEstado+=1
+
+        if label not in self.dp:
+            qA = Estado(label)
+            qA.set_transitions(transitionChar, nEstado)
+
+
+
         if label not in self.dp:
             #Estado(edoSig, label, transitionToNext):
             qA = Estado( (label+1), label, transitionChar) #
@@ -40,5 +51,9 @@ class Automata():
         qI.
         qF = Estado(None, label+1)
 
+    def concatenate_transitions(self, toConcatA, toConcatB):
+        qConcat = Estado(  )
+        qI = dp[ toConcatA ]
+        qF = dp[ toConcatB ]
 
 

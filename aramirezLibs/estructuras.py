@@ -40,18 +40,16 @@ class Estado():
 	##__edoAnt = []
 	__edoSig = []
 
-	__transitionIn = []
+	#__transitionIn = []
 	__transitionOut = []
 	__isFinal = False
 	__isInitial = False
 
-	def __init__(self, edoSig, label, transitionToNext = None):
+	def __init__(self, edoSig, label):
 		self.__label = label
 		##self.__edoAnt.append(edoAnt)
 		self.__edoSig.append(edoSig)
 
-		if transitionToNext is not None:
-			self.__transitionOut.append(simbol)
 		
 	# def set_previous_state(self, edoAnt):
 	# 	if edoAnt is not list:
@@ -65,12 +63,19 @@ class Estado():
 		else:
 			self.__edoSig.extend(edoSig)
 	
-	def set_transition_to_this(self, simbol):
-		self.__transitionIn.append(simbol)
+	# def set_transition_to_this(self, simbol):
+	# 	self.__transitionIn.append(simbol)
 
 	def set_transition_to_next(self, simbol):
 		self.__transitionOut.append(simbol)
 	
+	def set_transitions(self, posibleTransitions, Inicial): #listaTransicionesPosibles.
+		s = Inicial
+		for transition in posibleTransitions:
+			s+=1
+			self.__transitionOut.append(transition)
+
+
 	def set_type(self, tipo):
 		if tipo == 'final':
 			self.__isFinal = True
@@ -83,7 +88,7 @@ class Estado():
 	def print_state_details(self):
 		print(
 			"Name:", self.__label, \
-			"Edo Sig:", self.__edoSig,"\nTransitions:\n\tIn:", self.__transitionIn, \
+			"Edo Sig:", self.__edoSig,"\nTransitions:\n\t", \
 			"\n\tOut:", self.__transitionOut,"\nIs Final?:",self.__isFinal, \
 			"Is Initial?:", self.__isInitial
 			)
