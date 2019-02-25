@@ -81,10 +81,39 @@ def infixToSufix(regexInfijo):
 	return salida
 
 def analiza_regex_sufijo(regexSufix):
+	import re
+	global nR
+	#analizados = [ [0,1], [2,3,4] ]
+	analizados = []
+	cuentaSimb = 0
 	for char in regexSufix:
 		if char in alfabeto:
-			
+			salida = "R"+str(nR)+" -> R"; nR+=1; salida+=str(nR)+' [label="'+char+'"];\n'; nR+=1
+			analizados.append(salida)
+			print( salida )
+		elif char in operadores:
+			if char not in "|.":
+				if char in '+*':
+					salida = "R"+str(nR)+" -> R"; nR+=1; salida+= str(nR)+' [label="&epsilon;"];\n' ; nR+=1	#R5->R6 &epsilon;
+					salida+= "R"+str(nR)+" -> R"; nR+=1; salida+= str(nR)+' [label="&epsilon;"];\n' ; nR+=1	#R7->R8 &epsilon;
+					aux = nR - 2
+					salida+= "R"+str(aux)+" -> R"+str(aux-1)+' [label="&epsilon;"];\n' #R7 -> R6 &epsilon; Regreso positivo
+					if char == '*':
+						salida += "R"+str(nR-3)+"-> R"+str(nR-1)+' [label="&epsilon;"];' #R5 -> R8 &epsilon; Kleene
+
+					print(salida)
+					print("Se reemplazará:", "R"+str(aux-1) ,"por:", analizados[-1].split(" ->")[0])
+					print("Se reemplazará:", "R"+str(nR-1) ,"por:", max(re.findall(r'\d+', analizados[-1])) )
+					salida = salida.replace( "R"+str(aux-1), analizados[-1].split(" ->")[0] )
+					salida = salida[::-1].replace( "R"+str(nR-1), "R"+str( max(re.findall(r'\d+', analizados[-1])) ), 1)[::-1]
+					print(salida)
+		
+nR = 0
 
 if __name__ == '__main__':
 	regex = input("Dame la regex en infijo:\n")
-	print(infixToSufix(regex))
+	sufijo = infixToSufix(regex)
+
+	print(sufijo)
+
+	analiza_regex_sufijo(sufijo)
