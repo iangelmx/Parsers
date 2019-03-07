@@ -1,0 +1,16 @@
+instalar bison
+sudo apt-get install bison
+sudo apt-get install bison -doc
+
+generar un archivo .y y compilarlo para generar un .c y un .h
+
+bison rpcalc.y       //genera un .c
+bison rpcalc.y -d    //para generar un .h
+
+compilar en flex
+flex rpcalc.l  //genera yy.lex.yyc
+
+gcc -c lex.yy.c  //genera un archivo lex.yy.o
+gcc -c rpcalc.tab.c   ////genera un archivo rpcalc.tab.o
+
+gcc lex.yy.o rpcalc.tab.o -lm   //liga los archivos con mat
