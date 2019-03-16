@@ -5,7 +5,7 @@ import sys
 sys.path.append('./../')
 from aramirezLibs.estructuras import Pila, Estado
 
-alfabeto = "abcdefghijklmnopqrstuvxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+alfabeto = "abcdefghijklmnopqrstuvxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ#"
 operadores = "+|*."
 agrupadores = "()[]}{"
 
@@ -136,10 +136,30 @@ def analiza_regex_sufijo(regexSufix):
 		
 nR = 0
 
+def construyeArbol(sufijoInv):
+	arbol = Arbol()
+	raiz = Nodo(sufijoInv[0], 'raiz')
+	arbol.agregar(raiz)
+	for a in range(1, len(sufijoInv)):
+		nodo = Nodo( sufijoInv[a] )
+		if arbol.nodos[-1].derecha is None:
+			arbol.agregar( nodo , 'derecha')
+		else:
+			arbol.agregar( nodo , 'derecha')
+
+
+
+		
+		
+
 if __name__ == '__main__':
 	regex = input("Dame la regex en infijo:\n")
 	sufijo = infixToSufix(regex)
-
 	print(sufijo)
+
+	sufijoReverso = sufijo[::-1]
+	print(sufijoReverso)
+	input()
+	construyeArbol(sufijoReverso)
 
 	analiza_regex_sufijo(sufijo)

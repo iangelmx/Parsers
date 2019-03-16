@@ -92,3 +92,55 @@ class Estado():
 			"\n\tOut:", self.__transitionOut,"\nIs Final?:",self.__isFinal, \
 			"Is Initial?:", self.__isInitial
 			)
+
+class ArbolBinarioBusqueda:
+    def __init__(self):
+        self.raiz = None
+        self.tamano = 0
+
+    def longitud(self):
+        return self.tamano
+
+    def __len__(self):
+        return self.tamano
+
+    def __iter__(self):
+        return self.raiz.__iter__()
+
+class Arbol():
+	nodos = []
+	workingOn = -1
+
+	def __init__(self):
+		self.raiz = None
+	
+	def agregar(self, elemento, posicion=None):
+		if self.raiz == None:
+			self.raiz = elemento
+			self.nodos.append(self.raiz)
+		else:
+			if posicion == 'derecha':
+				self.nodos[-1].derecha = elemento
+			elif posicion == 'izquierda':
+				self.nodos[-1].izquierda = elemento
+	
+
+
+class nodo():
+	def __init__(self, char=None, nombre=None):
+		self.char = char
+		self.nombre = nombre
+	#char = ""
+	primeros = []
+	finales = []
+	anulable = None
+	
+	def is_simbol(self):
+		if self.char in "abcdefghijklmnopqrstuvxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+			return True
+		return False
+	def is_operator(self):
+		if self.char in "+|*.":
+			return True
+		return False
+	
