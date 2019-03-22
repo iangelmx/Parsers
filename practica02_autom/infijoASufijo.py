@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
+from pythonds.basic.stack import Stack
+from pythonds.trees.binaryTree import ArbolBinario
 sys.path.append('./../')
 from aramirezLibs.estructuras import Pila, Estado
 
@@ -146,10 +148,7 @@ def construyeArbol(sufijoInv):
 			arbol.agregar( nodo , 'derecha')
 		else:
 			arbol.agregar( nodo , 'derecha')
-
-
-
-		
+	
 		
 
 if __name__ == '__main__':
