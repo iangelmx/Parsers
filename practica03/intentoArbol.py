@@ -1,6 +1,27 @@
 from pythonds.basic.stack import Stack
 from pythonds.trees.binaryTree import BinaryTree
 
+class Nodo():
+	isAnulable = None
+	isHoja = None
+	primeros = []
+	finales = []
+	etiqueta = 0
+	valor = ""
+
+	def __init__(self, valor):
+		self.valor = valor
+		if valor in "+*|.":
+			self.isHoja = False
+		else:
+			self.isHoja = True
+	def getPrimeros(self):
+		return self.primeros
+	def getFinales():
+		return self.finales
+	def setAnulable(self, boolean):
+		self.isAnulable = boolean
+
 def buildParseTree(fpexp):
 	fplist = fpexp.split()
 	pStack = Stack()
@@ -9,19 +30,19 @@ def buildParseTree(fpexp):
 	currentTree = eTree
 	i = 0
 	while(i < len(fplist)):
-		print("Analyzing:",fplist[i])
+		#print("Analyzing:",fplist[i])
 		if fplist[i] == '(':
 			currentTree.insertLeft('')
 			pStack.push(currentTree)
 			currentTree = currentTree.getLeftChild()
 		elif fplist[i] in ['|', '.']:
-			currentTree.setRootVal(fplist[i])
+			currentTree.setRootVal( Nodo(fplist[i]) )
 			currentTree.insertRight('')
 			pStack.push(currentTree)
 			currentTree = currentTree.getRightChild()
 		elif fplist[i] in ["*>" , "+>"]:
 			#if fplist[i+1] == '>':
-			currentTree.setRootVal(fplist[i])
+			currentTree.setRootVal(Nodo(fplist[i]))
 			currentTree.insertLeft('')
 			pStack.push(currentTree)
 			currentTree = currentTree.getLeftChild()
@@ -33,7 +54,7 @@ def buildParseTree(fpexp):
 			#i+=2
 			#continue
 		elif fplist[i] not in ['.', '|', '*>', '+', ')', '<*']:
-			currentTree.setRootVal(fplist[i])
+			currentTree.setRootVal(Nodo(fplist[i]))
 			parent = pStack.pop()
 			currentTree = parent
 		elif fplist[i] == ')':
@@ -51,7 +72,7 @@ new = []
 regex = "(("+regex+").#)"
 ocurrencias = [pos for pos, char in enumerate(regex) if char == '*']
 nOcur = len(ocurrencias)*2
-print(ocurrencias)
+##print(ocurrencias)
 
 import re
 
@@ -68,11 +89,10 @@ for a in ocurParent:
 for a in ocurSimb:
 	regex = regex.replace( a, "*>"+a[:-1]+"<*" )
 
-print(regex)
-input(":v")
 
 b=0
 while b < len(regex):
+
 	if regex[b] in ["*"] and regex[b+1]==">":
 		new.append(regex[b]+">")
 		b+=1
@@ -117,4 +137,16 @@ print(string)
 """
 
 pt = buildParseTree(' '.join(new))
-pt.postorder()  #defined and explained in the next section
+rec = pt
+
+def postorder(arbol):
+	if arbol.leftChild:
+		arbol.leftChild.postorder()
+	if arbol.rightChild:
+		arbol.rightChild.postorder()
+	print(arbol.getRootVal())
+
+
+pt = rec
+postorder(pt)
+#pt.printexp()  #defined and explained in the next section
