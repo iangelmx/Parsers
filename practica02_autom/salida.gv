@@ -1,0 +1,12 @@
+digraph AFN{
+rankdir = LR;
+node [shape = "circle"];r0 -> r1 [label="a"];
+r1 -> r0 [label="e"];
+r1 -> r3 [label="e"];
+r2 -> r0 [label="e"];
+r2 -> r3 [label="e"];
+r3 -> r4 [label="e"];
+r4 -> r5 [label="b"];
+r5 -> r6 [label="e"];
+r6 -> r7 [label="d"];
+}
