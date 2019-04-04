@@ -39,8 +39,8 @@ def construyeThompson(postfix):
 			s.append({})
 			s.append({})
 			pilaL.append([c1,c2])
-			s[r2]['e']=(r1,c2)
-			s[c1]['e']=(r1,c2)
+			s[r2]['&epsilon;']=(r1,c2)
+			s[c1]['&epsilon;']=(r1,c2)
 			if eInicial==r1:
 				eInicial=c1 
 			if eFinal==r2:
@@ -54,8 +54,8 @@ def construyeThompson(postfix):
 			s.append({})
 			s.append({})
 			pilaL.append([c1,c2])
-			s[r2]['e']= (r1,c2)
-			s[c1]['e']= r1 #(r1,c2)
+			s[r2]['&epsilon;']= (r1,c2)
+			s[c1]['&epsilon;']= r1 #(r1,c2)
 			if eInicial==r1:
 				eInicial=c1 
 			if eFinal==r2:
@@ -89,9 +89,9 @@ def construyeThompson(postfix):
 			r11,r12=pilaL.pop()
 			r21,r22=pilaL.pop()
 			pilaL.append([c1,c2])
-			s[c1]['e']=(r21,r11); 
-			s[r12]['e']=c2; 
-			s[r22]['e']=c2
+			s[c1]['&epsilon;']=(r21,r11)
+			s[r12]['&epsilon;']=c2
+			s[r22]['&epsilon;']=c2
 			if eInicial==r11 or eInicial==r21:
 				eInicial=c1 
 			if eFinal==r22 or eFinal==r12:
