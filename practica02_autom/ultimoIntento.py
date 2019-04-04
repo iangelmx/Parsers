@@ -22,18 +22,44 @@ def construyeThompson(postfix):
 	for i in regex:
 		#print("s->", s)
 		if i in keys:
-			contAux=contAux+1;c1=contAux;contAux=contAux+1;c2=contAux;
-			s.append({});s.append({})
+			contAux=contAux+1
+			c1=contAux
+			contAux=contAux+1
+			c2=contAux
+			s.append({})
+			s.append({})
 			pilaL.append([c1,c2])
 			s[c1][i]=c2
 		elif i=='*':
 			r1,r2=pilaL.pop()
-			contAux=contAux+1;c1=contAux;contAux=contAux+1;c2=contAux;
-			s.append({});s.append({})
+			contAux=contAux+1
+			c1=contAux
+			contAux=contAux+1
+			c2=contAux
+			s.append({})
+			s.append({})
 			pilaL.append([c1,c2])
-			s[r2]['e']=(r1,c2);s[c1]['e']=(r1,c2)
-			if eInicial==r1:eInicial=c1 
-			if eFinal==r2:eFinal=c2 
+			s[r2]['e']=(r1,c2)
+			s[c1]['e']=(r1,c2)
+			if eInicial==r1:
+				eInicial=c1 
+			if eFinal==r2:
+				eFinal=c2 
+		elif i=='+':
+			r1,r2=pilaL.pop()
+			contAux+=1
+			c1=contAux
+			contAux+=1
+			c2=contAux
+			s.append({})
+			s.append({})
+			pilaL.append([c1,c2])
+			s[r2]['e']= (r1,c2)
+			s[c1]['e']= r1 #(r1,c2)
+			if eInicial==r1:
+				eInicial=c1 
+			if eFinal==r2:
+				eFinal=c2 
 		elif i=='.':
 			r11,r12=pilaL.pop()
 			r21,r22=pilaL.pop()
@@ -42,20 +68,36 @@ def construyeThompson(postfix):
 			###print("pre",s[r22])
 			#s[r22]=r11
 			#s[r22][ i ]=r11
-			s[r22][ 'e' ]=r11
+			###Original: #s[r22][ 'e' ]=r11
+			#Recorrer desde r21 y cuando vaya a llegar a r22 cambiar a r11
+			#Gustavo: s[r21][ 'e' ]=r11
+			s[r22] = s[r11] #quitar<-
+			del s[r11]
+			
 			###print("post", s[r22])
-			if eInicial==r11:eInicial=r21 
-			if eFinal==r22:eFinal=r12 
+			if eInicial==r11:
+				eInicial=r21 
+			if eFinal==r22:
+				eFinal=r12 
 		else:
-			contAux=contAux+1;c1=contAux;contAux=contAux+1;c2=contAux;
-			s.append({});s.append({})
+			contAux=contAux+1
+			c1=contAux
+			contAux=contAux+1
+			c2=contAux
+			s.append({})
+			s.append({})
 			r11,r12=pilaL.pop()
 			r21,r22=pilaL.pop()
 			pilaL.append([c1,c2])
-			s[c1]['e']=(r21,r11); s[r12]['e']=c2; s[r22]['e']=c2
-			if eInicial==r11 or eInicial==r21:eInicial=c1 
-			if eFinal==r22 or eFinal==r12:eFinal=c2
+			s[c1]['e']=(r21,r11); 
+			s[r12]['e']=c2; 
+			s[r22]['e']=c2
+			if eInicial==r11 or eInicial==r21:
+				eInicial=c1 
+			if eFinal==r22 or eFinal==r12:
+				eFinal=c2
 	#print(keys)
+	print("s->",s)
 	return s
 
 def getPrecedence(char):
@@ -140,13 +182,14 @@ if __name__ == '__main__':
 	i = 0
 	archivo.write("""digraph AFN{
 rankdir = LR;
-node [shape = "circle"];""")
+node [shape = "circle"];
+""")
 	for a in tabla:
 		if a != {}:
 			print(i, " con ", list(a.keys())[0], " va a:", list(a.values()))
 			#print(type(list(a.values())[0]))
 			if isinstance(list(a.values())[0], tuple):
-				print(type(list(a.values())[0] ))
+				#print(type(list(a.values())[0] ))
 				for b in list(a.values())[0]:
 					archivo.write( 'r{} -> r{} [label="{}"];\n'.format(i, b, list(a.keys())[0]) )
 			else:

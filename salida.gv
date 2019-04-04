@@ -1,0 +1,6 @@
+digraph AFN{
+rankdir = LR;
+node [shape = "circle"];r0 -> r1 [label="a"];
+r1 -> r2 [label="e"];
+r2 -> r3 [label="b"];
+}

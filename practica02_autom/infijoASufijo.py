@@ -4,7 +4,7 @@ import os
 import sys
 import re
 from pythonds.basic.stack import Stack
-from pythonds.trees.binaryTree import BinaryTree as ArbolBinario
+from pythonds.trees.binaryTree import BinaryTree as Arbol
 #sys.path.append('./../aramirezLibs')
 from estructuras import Pila, Estado
 
