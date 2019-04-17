@@ -1,17 +1,12 @@
 digraph AFN{
 rankdir = LR;
 node [shape = "circle"];
-r0 -> r1 [label="a"];
+r0 -> r1 [label="a", peripheries="4"];
 r1 -> r0 [label="&epsilon;"];
 r1 -> r3 [label="&epsilon;"];
 r2 -> r0 [label="&epsilon;"];
-r3 -> r9 [label="&epsilon;"];
-r4 -> r5 [label="b"];
-r5 -> r4 [label="&epsilon;"];
-r5 -> r7 [label="&epsilon;"];
-r6 -> r4 [label="&epsilon;"];
-r6 -> r7 [label="&epsilon;"];
-r7 -> r9 [label="&epsilon;"];
-r8 -> r2 [label="&epsilon;"];
-r8 -> r6 [label="&epsilon;"];
-}
+r3 -> r2 [label="&epsilon;"];
+r3 -> r5 [label="&epsilon;", peripheries="4"];
+r4 -> r2 [label="&epsilon;"];
+r4 -> r5 [label="&epsilon;", peripheries="4"];
+r5 [shape=doublecircle];I [shape="plaintext"]I ->r4}

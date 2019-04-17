@@ -17,7 +17,7 @@ class Nodo():
 			self.isHoja = True
 	def getPrimeros(self):
 		return self.primeros
-	def getFinales():
+	def getFinales(self):
 		return self.finales
 	def setAnulable(self, boolean):
 		self.isAnulable = boolean
@@ -135,6 +135,8 @@ print(string)
 
 
 """
+
+print("A PROCESAR:", new)
 
 pt = buildParseTree(' '.join(new))
 rec = pt
