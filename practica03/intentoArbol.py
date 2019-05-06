@@ -21,6 +21,8 @@ class Nodo():
 		return self.finales
 	def setAnulable(self, boolean):
 		self.isAnulable = boolean
+	def __repr__(self):
+		return str(self.__dict__)
 
 def buildParseTree(fpexp):
 	fplist = fpexp.split()
@@ -61,8 +63,12 @@ def buildParseTree(fpexp):
 			currentTree = pStack.pop()
 		else:
 			raise ValueError
+		
+		if currentTree.getLeftChild() is not None and currentTree.getRightChild() is not None:
+			currentTree = pStack.pop()
 		i += 1
-	return eTree
+	#return eTree
+	return currentTree
 
 #pt = buildParseTree("( ( 10 + 5 ) * 3 )")
 
