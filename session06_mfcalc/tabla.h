@@ -24,25 +24,7 @@ extern symrec *sym_table;
 symrec *putsym (char const *, int);
 symrec *getsym (char const *);
 
-float atan(){
-    return 0;
-}
-float cos(){
-    return 0;
-}
-float exp(){
-    return 0;
-}
-float log(){
-    return 0;
-}
-float sin(){
-    return 0;
-}
-float sqrt(){
-    return 0;
-}
-
+int FNCT;
 
 struct init
 {

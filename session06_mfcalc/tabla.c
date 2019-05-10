@@ -1,5 +1,6 @@
 #include <stdlib.h> /* malloc. */
 #include <string.h> /* strlen. */
+#include <math.h>
 #include "tabla.h"
 
 symrec *
