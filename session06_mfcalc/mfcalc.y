@@ -1,10 +1,9 @@
-/*mfcalc :(*/
 %{
 #include <stdio.h>  /* For printf, etc. */
 #include <math.h>   /* For pow, used in the grammar.  */
-#include "calc.h"   /* Contains definition of 'symrec'.  */
+#include "tabla.h"   /* Contains definition of 'symrec'.  */
 int yylex (void);
-void yyerror (char const *);
+void yyerror (char const *error) {printf("%s <- Error",error);}
 %}
 
 %define api.value.type union /* Generate YYSTYPE from these types:  */
@@ -17,7 +16,6 @@ void yyerror (char const *);
 %left '*' '/'
 %precedence NEG /* negation--unary minus */
 %right '^'      /* exponentiation */
-
 %% /* The grammar follows.  */
 input:
 %empty
@@ -26,7 +24,7 @@ input:
 
 line:
 '\n'
-| exp '\n'   { printf ("%.10g\n", $1); }
+| exp '\n'   { printf ("R = %.10g ;\n", $1); }
 | error '\n' { yyerrok;                }
 ;
 
@@ -45,21 +43,14 @@ NUM                { $$ = $1;                         }
 ;
 /* End of grammar.  */
 %%
-/* Called by yyparse on error.  */
-void
-yyerror (char const *s)
-{
-    fprintf (stderr, "%s\n", s);
-}
-
 int
 main (int argc, char const* argv[])
 {
-    int i;
-    /* Enable parse traces on option -p.  */
-    for (i = 1; i < argc; ++i)
-        if (!strcmp(argv[i], "-p"))
-        yydebug = 1;
-    init_table ();
-    return yyparse ();
+  int i;
+  /* Enable parse traces on option -p.  */
+  for (i = 1; i < argc; ++i)
+    if (!strcmp(argv[i], "-p"))
+ yydebug = 1;
+  init_table ();
+  return yyparse ();
 }

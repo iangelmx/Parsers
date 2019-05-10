@@ -1,6 +1,6 @@
 %{
 #include<stdlib.h>
-#include "calc.h"
+#include "tabla.h"
 #include "mfcalc.tab.h"
 %}
 
