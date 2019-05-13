@@ -1,3 +1,7 @@
+#include <stdlib.h> /* malloc. */
+#include <string.h> /* strlen. */
+#include <math.h>
+#include "mfcalc.tab.h"
 #ifndef __TABLA_H__
 #define __TABLA_H__
 /* Function type.  */
@@ -24,8 +28,6 @@ extern symrec *sym_table;
 symrec *putsym (char const *, int);
 symrec *getsym (char const *);
 
-int FNCT;
-
 struct init
 {
   char const *fname;
@@ -43,19 +45,10 @@ struct init const arith_fncts[] =
   { 0, 0 },
 };
 
-/* The symbol table: a chain of 'struct symrec'.  */
-symrec *sym_table;
+
 
 /* Put arithmetic functions in table.  */
 static
 void
-init_table (void)
-{
-  int i;
-  for (i = 0; arith_fncts[i].fname != 0; i++)
-    {
- symrec *ptr = putsym (arith_fncts[i].fname, FNCT);
- ptr->value.fnctptr = arith_fncts[i].fnct;
-    }
-}
+init_table (void);
 #endif

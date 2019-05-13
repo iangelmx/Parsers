@@ -3,10 +3,12 @@ run : a.out
 clean : 
 	rm *.o *.c *.h a.out
 
-lex.yy.c : mfcalc.l mfcalc.tab.c
+lex.yy.c : mfcalc.l mfcalc.tab.h
 	flex mfcalc.l
 mfcalc.tab.c : mfcalc.y
 	bison -d mfcalc.y
+
+mfcalc.tab.h: mfcalc.tab.c
 
 tabla.o : tabla.c
 	gcc tabla.c -c
