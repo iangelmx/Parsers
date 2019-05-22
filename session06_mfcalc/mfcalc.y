@@ -4,9 +4,11 @@
 #include "tabla.h"   /* Contains definition of 'symrec'.  */
 int yylex (void);
 void yyerror (char const *error) {printf("%s <- Error",error);}
+
 %}
 
 %define api.value.type union /* Generate YYSTYPE from these types:  */
+
 %token <double>  NUM         /* Simple double precision number.  */
 %token <symrec*> VAR FNCT    /* Symbol table pointer: variable and function.  */
 %type  <double>  exp

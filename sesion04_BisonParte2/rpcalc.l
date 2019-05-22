@@ -1,5 +1,6 @@
 %{
 #include<stdlib.h>
+#include <math.h>
 #include "rpcalc.tab.h"
 %}
 
