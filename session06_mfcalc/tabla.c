@@ -3,7 +3,6 @@
 
 symrec *sym_table;
 
-
 symrec *
 putsym (char const *sym_name, int sym_type)
 {
@@ -22,19 +21,30 @@ getsym (char const *sym_name)
 {
   symrec *ptr;
   for (ptr = sym_table; ptr != (symrec *) 0;
-  ptr = (symrec *)ptr->next)
-    if (strcmp (ptr->name, sym_name) == 0)
- return ptr;
+    ptr = (symrec *)ptr->next)
+  if (strcmp (ptr->name, sym_name) == 0)
+    return ptr;
   return 0;
 }
 
-static
+struct init const arith_fncts[] =
+{
+  { "atan", atan },
+  { "cos",  cos  },
+  { "exp",  exp  },
+  { "ln",   log  },
+  { "sin",  sin  },
+  { "sqrt", sqrt },
+  { 0, 0 },
+};
+
+
 void
 init_table (void){
   int i;
-  for (i = 0; arith_fncts[i].fname != 0; i++)
-    {
- symrec *ptr = putsym (arith_fncts[i].fname, 260);
- ptr->value.fnctptr = arith_fncts[i].fnct;
-    }
+  for (i = 0; arith_fncts[i].fname != 0; i++){
+    symrec *ptr = putsym (arith_fncts[i].fname, 260);
+    ptr->value.fnctptr = arith_fncts[i].fnct;
+  }
 }
+

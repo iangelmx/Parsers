@@ -4,7 +4,8 @@
 #include "tabla.h"   /* Contains definition of 'symrec'.  */
 int yylex (void);
 void yyerror (char const *error) {printf("%s <- Error",error);}
-
+void
+init_table (void);
 %}
 
 %define api.value.type union /* Generate YYSTYPE from these types:  */
@@ -45,14 +46,17 @@ NUM                { $$ = $1;                         }
 ;
 /* End of grammar.  */
 %%
-int
-main (int argc, char const* argv[])
+void
+init_table (void);
+int yydebug;
+
+int main (int argc, char const* argv[])
 {
   int i;
   /* Enable parse traces on option -p.  */
   for (i = 1; i < argc; ++i)
     if (!strcmp(argv[i], "-p"))
- yydebug = 1;
-  init_table ();
-  return yyparse ();
+       yydebug = 1;
+       init_table ();
+    return yyparse ();
 }

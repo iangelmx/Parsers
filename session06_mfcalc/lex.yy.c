@@ -447,9 +447,8 @@ char *yytext;
 #include <math.h>
 #include "tabla.h"
 #include "mfcalc.tab.h"
-
+#line 451 "lex.yy.c"
 #line 452 "lex.yy.c"
-#line 453 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -666,9 +665,9 @@ YY_DECL
 		}
 
 	{
-#line 10 "mfcalc.l"
+#line 9 "mfcalc.l"
 
-#line 672 "lex.yy.c"
+#line 671 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -727,31 +726,31 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 11 "mfcalc.l"
+#line 10 "mfcalc.l"
 { yylval.NUM = (*yytext); return NUM;  }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 12 "mfcalc.l"
+#line 11 "mfcalc.l"
 { return '\n'; }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 13 "mfcalc.l"
+#line 12 "mfcalc.l"
 
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 14 "mfcalc.l"
+#line 13 "mfcalc.l"
 { return *yytext; }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 16 "mfcalc.l"
+#line 15 "mfcalc.l"
 ECHO;
 	YY_BREAK
-#line 755 "lex.yy.c"
+#line 754 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1756,6 +1755,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 16 "mfcalc.l"
+#line 15 "mfcalc.l"
 
 

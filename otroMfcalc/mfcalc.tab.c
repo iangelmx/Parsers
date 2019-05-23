@@ -62,17 +62,15 @@
 
 
 /* Copy the first part of user declarations.  */
-#line 1 "mfcalc.y" /* yacc.c:339  */
+#line 2 "mfcalc.y" /* yacc.c:339  */
 
-#include <stdio.h>  /* For printf, etc. */
-#include <math.h>   /* For pow, used in the grammar.  */
-#include "tabla.h"   /* Contains definition of 'symrec'.  */
-int yylex (void);
-void yyerror (char const *error) {printf("%s <- Error",error);}
-void
-init_table (void);
+  #include <stdio.h>  /* For printf, etc. */
+  #include <math.h>   /* For pow, used in the grammar.  */
+  #include "calc.h"   /* Contains definition of 'symrec'.  */
+  int yylex (void);
+  void yyerror (char const *);
 
-#line 76 "mfcalc.tab.c" /* yacc.c:339  */
+#line 74 "mfcalc.tab.c" /* yacc.c:339  */
 
 # ifndef YY_NULLPTR
 #  if defined __cplusplus && 201103L <= __cplusplus
@@ -96,7 +94,7 @@ init_table (void);
 # define YY_YY_MFCALC_TAB_H_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
-# define YYDEBUG 0
+# define YYDEBUG 1
 #endif
 #if YYDEBUG
 extern int yydebug;
@@ -128,7 +126,7 @@ union YYSTYPE
   symrec* VAR;
   /* FNCT  */
   symrec* FNCT;
-#line 132 "mfcalc.tab.c" /* yacc.c:355  */
+#line 130 "mfcalc.tab.c" /* yacc.c:355  */
 };
 
 typedef union YYSTYPE YYSTYPE;
@@ -145,7 +143,7 @@ int yyparse (void);
 
 /* Copy the second part of user declarations.  */
 
-#line 149 "mfcalc.tab.c" /* yacc.c:358  */
+#line 147 "mfcalc.tab.c" /* yacc.c:358  */
 
 #ifdef short
 # undef short
@@ -443,8 +441,8 @@ static const yytype_uint8 yytranslate[] =
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    24,    24,    25,    29,    30,    31,    35,    36,    37,
-      38,    39,    40,    41,    42,    43,    44,    45
+       0,    35,    35,    36,    42,    43,    44,    50,    51,    52,
+      53,    54,    55,    56,    57,    58,    59,    60
 };
 #endif
 
@@ -644,7 +642,36 @@ yy_symbol_value_print (FILE *yyoutput, int yytype, YYSTYPE const * const yyvalue
   if (yytype < YYNTOKENS)
     YYPRINT (yyoutput, yytoknum[yytype], *yyvaluep);
 # endif
-  YYUSE (yytype);
+  switch (yytype)
+    {
+          case 3: /* NUM  */
+#line 31 "mfcalc.y" /* yacc.c:684  */
+      { fprintf (yyoutput, "%g", (*(double*)(&(*yyvaluep)))); }
+#line 651 "mfcalc.tab.c" /* yacc.c:684  */
+        break;
+
+    case 4: /* VAR  */
+#line 29 "mfcalc.y" /* yacc.c:684  */
+      { fprintf (yyoutput, "%s", (*(symrec**)(&(*yyvaluep)))->name); }
+#line 657 "mfcalc.tab.c" /* yacc.c:684  */
+        break;
+
+    case 5: /* FNCT  */
+#line 30 "mfcalc.y" /* yacc.c:684  */
+      { fprintf (yyoutput, "%s()", (*(symrec**)(&(*yyvaluep)))->name); }
+#line 663 "mfcalc.tab.c" /* yacc.c:684  */
+        break;
+
+    case 19: /* exp  */
+#line 31 "mfcalc.y" /* yacc.c:684  */
+      { fprintf (yyoutput, "%g", (*(double*)(&(*yyvaluep)))); }
+#line 669 "mfcalc.tab.c" /* yacc.c:684  */
+        break;
+
+
+      default:
+        break;
+    }
 }
 
 
@@ -1235,85 +1262,85 @@ yyreduce:
   switch (yyn)
     {
         case 5:
-#line 30 "mfcalc.y" /* yacc.c:1646  */
-    { printf ("R = %.10g ;\n", (*(double*)(&yyvsp[-1]))); }
-#line 1241 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 43 "mfcalc.y" /* yacc.c:1646  */
+    { printf ("%.10g\n", (*(double*)(&yyvsp[-1]))); }
+#line 1268 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
-#line 31 "mfcalc.y" /* yacc.c:1646  */
+#line 44 "mfcalc.y" /* yacc.c:1646  */
     { yyerrok;                }
-#line 1247 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1274 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
-#line 35 "mfcalc.y" /* yacc.c:1646  */
+#line 50 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[0]));                         }
-#line 1253 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1280 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
-#line 36 "mfcalc.y" /* yacc.c:1646  */
+#line 51 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(symrec**)(&yyvsp[0]))->value.var;              }
-#line 1259 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1286 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
-#line 37 "mfcalc.y" /* yacc.c:1646  */
+#line 52 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[0])); (*(symrec**)(&yyvsp[-2]))->value.var = (*(double*)(&yyvsp[0]));     }
-#line 1265 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1292 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
-#line 38 "mfcalc.y" /* yacc.c:1646  */
+#line 53 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*((*(symrec**)(&yyvsp[-3]))->value.fnctptr))((*(double*)(&yyvsp[-1]))); }
-#line 1271 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1298 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
-#line 39 "mfcalc.y" /* yacc.c:1646  */
+#line 54 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) + (*(double*)(&yyvsp[0]));                    }
-#line 1277 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1304 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
-#line 40 "mfcalc.y" /* yacc.c:1646  */
+#line 55 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) - (*(double*)(&yyvsp[0]));                    }
-#line 1283 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1310 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
-#line 41 "mfcalc.y" /* yacc.c:1646  */
+#line 56 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) * (*(double*)(&yyvsp[0]));                    }
-#line 1289 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1316 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
-#line 42 "mfcalc.y" /* yacc.c:1646  */
+#line 57 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) / (*(double*)(&yyvsp[0]));                    }
-#line 1295 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1322 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
-#line 43 "mfcalc.y" /* yacc.c:1646  */
+#line 58 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = -(*(double*)(&yyvsp[0]));                        }
-#line 1301 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1328 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
-#line 44 "mfcalc.y" /* yacc.c:1646  */
+#line 59 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = pow ((*(double*)(&yyvsp[-2])), (*(double*)(&yyvsp[0])));               }
-#line 1307 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1334 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
-#line 45 "mfcalc.y" /* yacc.c:1646  */
+#line 60 "mfcalc.y" /* yacc.c:1646  */
     { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-1]));                         }
-#line 1313 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1340 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
 
-#line 1317 "mfcalc.tab.c" /* yacc.c:1646  */
+#line 1344 "mfcalc.tab.c" /* yacc.c:1646  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -1541,18 +1568,170 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 48 "mfcalc.y" /* yacc.c:1906  */
+#line 64 "mfcalc.y" /* yacc.c:1906  */
 
+
+struct init
+{
+  char const *fname;
+  double (*fnct) (double);
+};
+
+
+
+struct init const arith_fncts[] =
+{
+  { "atan", atan },
+  { "cos",  cos  },
+  { "exp",  exp  },
+  { "ln",   log  },
+  { "sin",  sin  },
+  { "sqrt", sqrt },
+  { 0, 0 },
+};
+
+
+
+/* The symbol table: a chain of 'struct symrec'.  */
+symrec *sym_table;
+
+
+
+/* Put arithmetic functions in table.  */
+static
 void
-init_table (void);
-int yydebug;
-int main (int argc, char const* argv[])
+init_table (void)
+{
+  int i;
+  for (i = 0; arith_fncts[i].fname != 0; i++)
+    {
+      symrec *ptr = putsym (arith_fncts[i].fname, FNCT);
+      ptr->value.fnctptr = arith_fncts[i].fnct;
+    }
+}
+
+#include <stdlib.h> /* malloc. */
+#include <string.h> /* strlen. */
+
+
+symrec *
+putsym (char const *sym_name, int sym_type)
+{
+  symrec *ptr = (symrec *) malloc (sizeof (symrec));
+  ptr->name = (char *) malloc (strlen (sym_name) + 1);
+  strcpy (ptr->name,sym_name);
+  ptr->type = sym_type;
+  ptr->value.var = 0; /* Set value to 0 even if fctn.  */
+  ptr->next = (struct symrec *)sym_table;
+  sym_table = ptr;
+  return ptr;
+}
+
+
+
+symrec *
+getsym (char const *sym_name)
+{
+  symrec *ptr;
+  for (ptr = sym_table; ptr != (symrec *) 0;
+       ptr = (symrec *)ptr->next)
+    if (strcmp (ptr->name, sym_name) == 0)
+      return ptr;
+  return 0;
+}
+
+#include <ctype.h>
+
+
+int
+yylex (void)
+{
+  int c;
+
+  /* Ignore white space, get first nonwhite character.  */
+  while ((c = getchar ()) == ' ' || c == '\t')
+    continue;
+
+  if (c == EOF)
+    return 0;
+
+
+
+  /* Char starts a number => parse the number.         */
+  if (c == '.' || isdigit (c))
+    {
+      ungetc (c, stdin);
+      scanf ("%lf", &yylval.NUM);
+      return NUM;
+    }
+
+
+  /* Char starts an identifier => read the name.       */
+  if (isalpha (c))
+    {
+      /* Initially make the buffer long enough
+         for a 40-character symbol name.  */
+      static size_t length = 40;
+      static char *symbuf = 0;
+      symrec *s;
+      int i;
+
+      if (!symbuf)
+        symbuf = (char *) malloc (length + 1);
+
+      i = 0;
+      do
+
+        {
+          /* If buffer is full, make it bigger.        */
+          if (i == length)
+            {
+              length *= 2;
+              symbuf = (char *) realloc (symbuf, length + 1);
+            }
+          /* Add this character to the buffer.         */
+          symbuf[i++] = c;
+          /* Get another character.                    */
+          c = getchar ();
+        }
+
+
+      while (isalnum (c));
+
+      ungetc (c, stdin);
+      symbuf[i] = '\0';
+
+
+
+      s = getsym (symbuf);
+      if (s == 0)
+        s = putsym (symbuf, VAR);
+      *((symrec**) &yylval) = s;
+      return s->type;
+    }
+
+  /* Any other character is a token by itself.        */
+  return c;
+}
+
+
+/* Called by yyparse on error.  */
+void
+yyerror (char const *s)
+{
+  fprintf (stderr, "%s\n", s);
+}
+
+
+
+int
+main (int argc, char const* argv[])
 {
   int i;
   /* Enable parse traces on option -p.  */
   for (i = 1; i < argc; ++i)
     if (!strcmp(argv[i], "-p"))
-       yydebug = 1;
-       init_table ();
-    return yyparse ();
+      yydebug = 1;
+  init_table ();
+  return yyparse ();
 }
