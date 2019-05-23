@@ -68,7 +68,7 @@
 #include <math.h>   /* For pow, used in the grammar.  */
 #include "tabla.h"   /* Contains definition of 'symrec'.  */
 int yylex (void);
-void yyerror (char const *error) {printf("%s <- Error",error);}
+void yyerror (char const *error) {printf("%s\t<- Error",error);}
 void
 init_table (void);
 
@@ -1272,13 +1272,13 @@ yyreduce:
 
   case 11:
 #line 39 "mfcalc.y" /* yacc.c:1646  */
-    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) + (*(double*)(&yyvsp[0]));                    }
+    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) + (*(double*)(&yyvsp[0]));  printf("%g %g", (*(double*)(&yyvsp[-2])), (*(double*)(&yyvsp[0])));                  }
 #line 1277 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 40 "mfcalc.y" /* yacc.c:1646  */
-    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) - (*(double*)(&yyvsp[0]));                    }
+    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) - (*(double*)(&yyvsp[0]));  printf("%g %g", (*(double*)(&yyvsp[-2])), (*(double*)(&yyvsp[0])));                  }
 #line 1283 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1546,6 +1546,7 @@ yyreturn:
 void
 init_table (void);
 int yydebug;
+
 int main (int argc, char const* argv[])
 {
   int i;
