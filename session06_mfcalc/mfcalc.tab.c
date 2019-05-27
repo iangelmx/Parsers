@@ -1260,7 +1260,7 @@ yyreduce:
 
   case 9:
 #line 37 "mfcalc.y" /* yacc.c:1646  */
-    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[0])); (*(symrec**)(&yyvsp[-2]))->value.var = (*(double*)(&yyvsp[0]));     }
+    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[0])); (*(symrec**)(&yyvsp[-2]))->value.var = (*(double*)(&yyvsp[0]));      }
 #line 1265 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1272,13 +1272,13 @@ yyreduce:
 
   case 11:
 #line 39 "mfcalc.y" /* yacc.c:1646  */
-    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) + (*(double*)(&yyvsp[0]));  printf("%g %g", (*(double*)(&yyvsp[-2])), (*(double*)(&yyvsp[0])));                  }
+    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) + (*(double*)(&yyvsp[0]));  /*printf("$1->%g $3->%g | ", $1, $3);*/                  }
 #line 1277 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 40 "mfcalc.y" /* yacc.c:1646  */
-    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) - (*(double*)(&yyvsp[0]));  printf("%g %g", (*(double*)(&yyvsp[-2])), (*(double*)(&yyvsp[0])));                  }
+    { (*(double*)(&yyval)) = (*(double*)(&yyvsp[-2])) - (*(double*)(&yyvsp[0]));  /*printf("%g %g", $1, $3);*/                  }
 #line 1283 "mfcalc.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1549,6 +1549,11 @@ int yydebug;
 
 int main (int argc, char const* argv[])
 {
+  struct init
+  {
+    char const *name;
+    func_t *fun;
+  };
   int i;
   /* Enable parse traces on option -p.  */
   for (i = 1; i < argc; ++i)

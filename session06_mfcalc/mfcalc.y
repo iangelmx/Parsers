@@ -34,10 +34,10 @@ line:
 exp:
 NUM                { $$ = $1;                         }
 | VAR                { $$ = $1->value.var;              }
-| VAR '=' exp        { $$ = $3; $1->value.var = $3;     }
+| VAR '=' exp        { $$ = $3; $1->value.var = $3;      }
 | FNCT '(' exp ')'   { $$ = (*($1->value.fnctptr))($3); }
-| exp '+' exp        { $$ = $1 + $3;  printf("%g %g", $1, $3);                  }
-| exp '-' exp        { $$ = $1 - $3;  printf("%g %g", $1, $3);                  }
+| exp '+' exp        { $$ = $1 + $3;  /*printf("$1->%g $3->%g | ", $1, $3);*/                  }
+| exp '-' exp        { $$ = $1 - $3;  /*printf("%g %g", $1, $3);*/                  }
 | exp '*' exp        { $$ = $1 * $3;                    }
 | exp '/' exp        { $$ = $1 / $3;                    }
 | '-' exp  %prec NEG { $$ = -$2;                        }
@@ -52,6 +52,11 @@ int yydebug;
 
 int main (int argc, char const* argv[])
 {
+  struct init
+  {
+    char const *name;
+    func_t *fun;
+  };
   int i;
   /* Enable parse traces on option -p.  */
   for (i = 1; i < argc; ++i)

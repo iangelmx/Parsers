@@ -23,4 +23,4 @@ main.o: main.c
 	gcc -c main.c
 
 a.out : lex.yy.o mfcalc.tab.o tabla.o 
-	gcc mfcalc.tab.o lex.yy.o tabla.o -lm -ll -ly
+	gcc mfcalc.tab.o lex.yy.o tabla.o  -lm -ll -ly

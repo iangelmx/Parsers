@@ -7,9 +7,11 @@
 
 
 %%
-[0-9]+"."[0-9]+ { yylval.NUM = (*yytext); return NUM;  }
-\n              { return '\n'; }
+[0-9]+"."[0-9]+         { yylval.NUM = atof(yytext); return NUM;  }
+[0-9]+                  { yylval.NUM = atoi(yytext);     return NUM;  }
+\n                      { return '\n'; }
+
 [ ]
-[-n+*/^]              { return *yytext; }
+[-n+*/^]                { return *yytext; }
 
 %%

@@ -44,6 +44,7 @@ init_table (void){
   int i;
   for (i = 0; arith_fncts[i].fname != 0; i++){
     symrec *ptr = putsym (arith_fncts[i].fname, 260);
+    //symrec *ptr = putsym (arith_fncts[i].fname, 260);
     ptr->value.fnctptr = arith_fncts[i].fnct;
   }
 }

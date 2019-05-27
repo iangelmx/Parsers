@@ -351,8 +351,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 5
-#define YY_END_OF_BUFFER 6
+#define YY_NUM_RULES 6
+#define YY_END_OF_BUFFER 7
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -362,7 +362,7 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[13] =
     {   0,
-        0,    0,    6,    5,    2,    3,    4,    5,    0,    0,
+        0,    0,    7,    6,    3,    4,    5,    2,    0,    2,
         1,    0
     } ;
 
@@ -727,30 +727,35 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 10 "mfcalc.l"
-{ yylval.NUM = (*yytext); return NUM;  }
+{ yylval.NUM = atof(yytext); return NUM;  }
 	YY_BREAK
 case 2:
-/* rule 2 can match eol */
 YY_RULE_SETUP
 #line 11 "mfcalc.l"
-{ return '\n'; }
+{ yylval.NUM = atoi(yytext);     return NUM;  }
 	YY_BREAK
 case 3:
+/* rule 3 can match eol */
 YY_RULE_SETUP
 #line 12 "mfcalc.l"
-
+{ return '\n'; }
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 13 "mfcalc.l"
-{ return *yytext; }
+#line 14 "mfcalc.l"
+
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 15 "mfcalc.l"
+{ return *yytext; }
+	YY_BREAK
+case 6:
+YY_RULE_SETUP
+#line 17 "mfcalc.l"
 ECHO;
 	YY_BREAK
-#line 754 "lex.yy.c"
+#line 759 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1755,6 +1760,6 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 15 "mfcalc.l"
+#line 17 "mfcalc.l"
 
 
