@@ -1,15 +1,11 @@
 %{
-#include <stdio.h>  /* For printf, etc. */
-#include <math.h>   /* For pow, used in the grammar.  */
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include <math.h>
 #include "tabla.h"   /* Contains definition of 'symrec'.  */
 int yylex (void);
-int yydebug;
-static void init_table(void);
-//void yyerror (char const *error) {printf("%s\t<- Error",error);}
+void yyerror (char const *error) {printf("%s\t<- Error",error);}
 %}
-
 %code requires
 {
 	#include "tabla.h"
@@ -54,16 +50,8 @@ exp:
 ;
 /* End of grammar.  */
 %%
-
-static void init_table (void){
-  int i;
-  for (i = 0; arith_fncts[i].fname != 0; i++){
-    symrec *ptr = putsym (arith_fncts[i].fname, FNCT);
-    //symrec *ptr = putsym (arith_fncts[i].fname, 260);
-    ptr->value.fnctptr = arith_fncts[i].fnct;
-  }
-}
-
+int yydebug;
+void init_table(void);
 
 int main (int argc, char const* argv[])
 {

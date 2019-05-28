@@ -1,9 +1,10 @@
-#ifndef __TABLA_H__
-#define __TABLA_H__
 #include <math.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+
+#ifndef __TABLA_H__
+#define __TABLA_H__
 
 /* Function type.  */
 typedef double (*func_t) (double);
@@ -30,16 +31,14 @@ struct init
 };
 
 extern struct init const arith_fncts[];
-
+extern int yydebug;
 /* The symbol table: a chain of 'struct symrec'.  */
 extern symrec *sym_table;
 extern symrec *putsym (char const *, int);
 extern symrec *getsym (char const *);
 
-extern void yyerror(char const *s);
-
 /* Put arithmetic functions in table.  */
-static 
+ 
 void
 init_table (void);
 #endif

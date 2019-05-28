@@ -40,7 +40,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 14 "mfcalc.y" /* yacc.c:1909  */
+#line 10 "mfcalc.y" /* yacc.c:1909  */
 
 	#include "tabla.h"
 
