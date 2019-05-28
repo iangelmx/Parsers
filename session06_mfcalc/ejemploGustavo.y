@@ -12,8 +12,8 @@ init_table (void);
 
 %token <double>  NUM         /* Simple double precision number.  */
 %token <symrec*> VAR FNCT    /* Symbol table pointer: variable and function.  */
-%type  <double>  exp
 %token <int> TFUNC
+%type  <double>  exp
 
 %precedence '='
 %left '-' '+'
@@ -36,7 +36,7 @@ exp:
 NUM                { $$ = $1;                         }
 | VAR                { $$ = $1->value.var;              }
 | VAR '=' exp        { $$ = $3; $1->value.var = $3;      }
-| TFUNC exp          { $$ = sin($2); }
+| FNCT  exp    { $$ = sin($2); }
 | exp '+' exp        { $$ = $1 + $3;  /*printf("$1->%g $3->%g | ", $1, $3);*/                  }
 | exp '-' exp        { $$ = $1 - $3;  /*printf("%g %g", $1, $3);*/                  }
 | exp '*' exp        { $$ = $1 * $3;                    }
