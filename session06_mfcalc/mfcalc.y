@@ -1,26 +1,31 @@
 %{
 #include <stdio.h>  /* For printf, etc. */
 #include <math.h>   /* For pow, used in the grammar.  */
+#include <stdlib.h>
+#include <string.h>
 #include "tabla.h"   /* Contains definition of 'symrec'.  */
 int yylex (void);
-void yyerror (char const *error) {printf("%s\t<- Error",error);}
-void
-init_table (void);
+int yydebug;
+static void init_table(void);
+//void yyerror (char const *error) {printf("%s\t<- Error",error);}
 %}
 
-%define api.value.type union /* Generate YYSTYPE from these types:  */
+%code requires
+{
+	#include "tabla.h"
+}
 
+%define api.value.type union /* Generate YYSTYPE from these types:  */
 %token <double>  NUM         /* Simple double precision number.  */
 %token <symrec*> VAR FNCT    /* Symbol table pointer: variable and function.  */
-%token <int> TFUNC
 %type  <double>  exp
-
 
 %precedence '='
 %left '-' '+'
 %left '*' '/'
 %precedence NEG /* negation--unary minus */
 %right '^'      /* exponentiation */
+
 %% /* The grammar follows.  */
 input:
 %empty
@@ -33,11 +38,12 @@ line:
 | error '\n' { yyerrok;                }
 ;
 
+
 exp:
-NUM                { $$ = $1;                         }
-| VAR                { $$ = $1->value.var;    printf("Var... %g\n", $$);          }
-| VAR '=' exp        { $$ = $3; $1->value.var = $3;  printf(">>>%g",$3);    }
-| FNCT '(' exp ')'   { $$ = ($1->value.fnctptr)($3); printf("Llegué a linea 40\n"); }
+  NUM                { $$ = $1;                         }
+| VAR                { $$ = $1->value.var;       }
+| VAR '=' exp        { $$ = $3; $1->value.var = $3;     }
+| FNCT '(' exp ')'   { $$ = (*($1->value.fnctptr))($3); }
 | exp '+' exp        { $$ = $1 + $3;  /*printf("$1->%g $3->%g | ", $1, $3);*/                  }
 | exp '-' exp        { $$ = $1 - $3;  /*printf("%g %g", $1, $3);*/                  }
 | exp '*' exp        { $$ = $1 * $3;                    }
@@ -48,17 +54,20 @@ NUM                { $$ = $1;                         }
 ;
 /* End of grammar.  */
 %%
-void
-init_table (void);
-int yydebug;
+
+static void init_table (void){
+  int i;
+  for (i = 0; arith_fncts[i].fname != 0; i++){
+    symrec *ptr = putsym (arith_fncts[i].fname, FNCT);
+    //symrec *ptr = putsym (arith_fncts[i].fname, 260);
+    ptr->value.fnctptr = arith_fncts[i].fnct;
+  }
+}
+
 
 int main (int argc, char const* argv[])
 {
-  struct init
-  {
-    char const *name;
-    func_t *fun;
-  };
+  
   int i;
   /* Enable parse traces on option -p.  */
   for (i = 1; i < argc; ++i)

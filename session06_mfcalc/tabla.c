@@ -1,5 +1,7 @@
 #include "tabla.h"
-
+#include <stdio.h>
+#include <stdlib.h> /* malloc. */
+#include <string.h> /* strlen. */
 
 symrec *sym_table;
 
@@ -37,13 +39,8 @@ struct init const arith_fncts[] =
 };
 
 
-void
-init_table (void){
-  int i;
-  for (i = 0; arith_fncts[i].fname != 0; i++){
-    symrec *ptr = putsym (arith_fncts[i].fname, 260);
-    //symrec *ptr = putsym (arith_fncts[i].fname, 260);
-    ptr->value.fnctptr = arith_fncts[i].fnct;
-  }
-}
 
+void yyerror (char const *s)
+{
+  //fprintf (stderr, "%s\n", s);
+}

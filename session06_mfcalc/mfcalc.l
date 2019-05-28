@@ -1,52 +1,30 @@
 %{
-#include<stdlib.h>
-#include <math.h>
-#include "tabla.h"
+#include <stdlib.h>
 #include "mfcalc.tab.h"
+#include "tabla.h"
 %}
 
-
 %%
-
 [0-9]+"."[0-9]+         { yylval.NUM = atof(yytext); return NUM;  }
 [0-9]+                  { yylval.NUM = atoi(yytext); return NUM;  }
-\n                      { return '\n'; }
-"sin"                  { yylval.NUM = 1; return TFUNC; }
-"cos"      {
-                             
-                            printf("Entré a cos : %s\n\n", yytext);
-                            symrec *s = getsym (yytext);
-                            if (!s){
-                                printf("No encontró a coseno");
-                                s = putsym (yytext, VAR);
-                            }
-                            else{
-                                printf("Encontró a coseno en la symbol table\n");
-                            }
-                            yylval.NUM = 15;
-
-                            yylval.FNCT = s; /* or yylval.FUN = s. */
-                            printf("s type: %d\n", s->type);
-                            return FNCT;
-                            
-                        }
-"TAN"                  { yylval.NUM = 3; return FNCT; }
-[ ]
-[-n+*/^]                { return *yytext; }
-
-[a-zA-Z0-9]+            { 
+[a-zA-Z]+            { 
+                        symrec *s;
+                        s = getsym(yytext);
                         printf("Entré a azAz09 : %s\n\n", yytext);
-                            symrec *s = getsym (yytext);
-                            if (!s){
+                            if(s == 0){ //no existe la variable
                                 printf("No encontró a >%s<", yytext);
                                 s = putsym (yytext, VAR);
+                                printf("\nse agregó la variable %s a la tabla de símbolos\n", yytext);
                             }
                             else{
-                                printf("Encontró a >%s< en la symbol table\n", yytext);
+                                printf("Encontró a >%s< en la tabla de símbolos\n", yytext);
                             }
-                            yylval.VAR = s; /* or yylval.FUN = s. */
-                            printf("s type: %d\n", VAR);
-                            return VAR;
-                        }
+                            yylval.VAR = s;
+                            return s->type;
+                    }
+\n                      { return '\n'; }
+[ ]
+[-n+*/^=()]                { return *yytext; }
+
 
 %%
