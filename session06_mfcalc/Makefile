@@ -8,8 +8,7 @@ lex.yy.c : mfcalc.l mfcalc.tab.h
 mfcalc.tab.c : mfcalc.y
 	bison -d mfcalc.y
 
-mfcalc.tab.h: mfcalc.y
-	bison -d mfcalc.y
+mfcalc.tab.h: mfcalc.tab.c
 
 tabla.o : tabla.c
 	gcc -c tabla.c

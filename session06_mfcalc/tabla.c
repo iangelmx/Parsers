@@ -1,5 +1,6 @@
 #include "tabla.h"
 
+
 symrec *sym_table;
 
 symrec *putsym (char const *sym_name, int sym_type)
@@ -35,7 +36,9 @@ struct init const arith_fncts[] =
   { 0, 0 },
 };
 
-void init_table (void){
+
+void
+init_table (void){
   int i;
   for (i = 0; arith_fncts[i].fname != 0; i++){
     symrec *ptr = putsym (arith_fncts[i].fname, 260);
@@ -43,3 +46,4 @@ void init_table (void){
     ptr->value.fnctptr = arith_fncts[i].fnct;
   }
 }
+

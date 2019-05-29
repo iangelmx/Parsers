@@ -1,11 +1,12 @@
+#include <stdlib.h> /* malloc. */
+#include <string.h> /* strlen. */
 #include <math.h>
-#include <stdlib.h>
 #include <stdio.h>
-#include <string.h>
+
+
 
 #ifndef __TABLA_H__
 #define __TABLA_H__
-
 /* Function type.  */
 typedef double (*func_t) (double);
 
@@ -24,21 +25,26 @@ struct symrec
 
 typedef struct symrec symrec;
 
+/* The symbol table: a chain of 'struct symrec'.  */
+extern symrec *sym_table;
+//extern symrec *FNCT;
+
+
+////>>>
+extern int yydebug;
+//extern YYSTYPE yylval;
+
+symrec *putsym (char const *, int);
+symrec *getsym (char const *);
+
 struct init
 {
   char const *fname;
   double (*fnct) (double);
 };
 
-extern struct init const arith_fncts[];
-extern int yydebug;
-/* The symbol table: a chain of 'struct symrec'.  */
-extern symrec *sym_table;
-extern symrec *putsym (char const *, int);
-extern symrec *getsym (char const *);
 
 /* Put arithmetic functions in table.  */
- 
 void
 init_table (void);
 #endif

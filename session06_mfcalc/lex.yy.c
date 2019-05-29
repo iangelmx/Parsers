@@ -362,8 +362,8 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[16] =
     {   0,
-        0,    0,    8,    7,    4,    5,    6,    2,    3,    3,
-        0,    2,    3,    1,    0
+        0,    0,    8,    7,    3,    4,    6,    2,    5,    5,
+        0,    2,    5,    1,    0
     } ;
 
 static const YY_CHAR yy_ec[256] =
@@ -445,11 +445,12 @@ int yy_flex_debug = 0;
 char *yytext;
 #line 1 "mfcalc.l"
 #line 2 "mfcalc.l"
-#include <stdlib.h>
-#include "mfcalc.tab.h"
+#include<stdlib.h>
+#include <math.h>
 #include "tabla.h"
-#line 452 "lex.yy.c"
+#include "mfcalc.tab.h"
 #line 453 "lex.yy.c"
+#line 454 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -666,9 +667,10 @@ YY_DECL
 		}
 
 	{
-#line 7 "mfcalc.l"
+#line 9 "mfcalc.l"
 
-#line 672 "lex.yy.c"
+
+#line 674 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -727,47 +729,45 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "mfcalc.l"
+#line 11 "mfcalc.l"
 { yylval.NUM = atof(yytext); return NUM;  }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 9 "mfcalc.l"
+#line 12 "mfcalc.l"
 { yylval.NUM = atoi(yytext); return NUM;  }
 	YY_BREAK
 case 3:
+/* rule 3 can match eol */
 YY_RULE_SETUP
-#line 10 "mfcalc.l"
-{ 
-                        symrec *s;
-                        s = getsym(yytext);
-                        printf("Entré a azAz09 : %s\n\n", yytext);
-                            if(s == 0){ //no existe la variable
-                                printf("No encontró a >%s<", yytext);
-                                s = putsym (yytext, VAR);
-                                printf("\nse agregó la variable %s a la tabla de símbolos\n", yytext);
-                            }
-                            else{
-                                printf("Encontró a >%s< en la tabla de símbolos\n", yytext);
-                            }
-                            yylval.VAR = s;
-                            return s->type;
-                    }
+#line 13 "mfcalc.l"
+{ return '\n'; }
 	YY_BREAK
 case 4:
-/* rule 4 can match eol */
 YY_RULE_SETUP
-#line 25 "mfcalc.l"
-{ return '\n'; }
+#line 14 "mfcalc.l"
+
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 26 "mfcalc.l"
-
+#line 15 "mfcalc.l"
+{ 
+                            symrec *s = getsym (yytext);
+                            if (!s){
+                                //printf("No encontró a >%s<", yytext);
+                                s = putsym (yytext, VAR);
+                            }
+                            else{
+                                //printf("Encontró a >%s< en la symbol table\n", yytext);
+                            }
+                            yylval.VAR = s; /* or yylval.FUN = s. */
+                            //printf("s type: %d\n", VAR);
+                            return s->type;
+                        }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 27 "mfcalc.l"
+#line 28 "mfcalc.l"
 { return *yytext; }
 	YY_BREAK
 case 7:
