@@ -12,7 +12,7 @@ init_table (void);
 
 %token <double>  NUM         /* Simple double precision number.  */
 %token <symrec*> VAR FNCT    /* Symbol table pointer: variable and function.  */
-%token <int> IF
+%token <int> IF FINIF THEN
 %type  <double>  exp
 
 
@@ -35,7 +35,7 @@ line:
 ;
 
 selection_statement:
-IF exp THEN input FINIF { printf("Vi un if valido") }
+IF '(' exp ')' '{' input '}' { printf("Vi un if valido"); }
 ;
 
 exp:

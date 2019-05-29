@@ -48,8 +48,10 @@ extern int yydebug;
     NUM = 258,
     VAR = 259,
     FNCT = 260,
-    TFUNC = 261,
-    NEG = 262
+    IF = 261,
+    FINIF = 262,
+    THEN = 263,
+    NEG = 264
   };
 #endif
 
@@ -63,13 +65,17 @@ union YYSTYPE
   double NUM;
   /* exp  */
   double exp;
-  /* TFUNC  */
-  int TFUNC;
+  /* IF  */
+  int IF;
+  /* FINIF  */
+  int FINIF;
+  /* THEN  */
+  int THEN;
   /* VAR  */
   symrec* VAR;
   /* FNCT  */
   symrec* FNCT;
-#line 73 "mfcalc.tab.h" /* yacc.c:1909  */
+#line 79 "mfcalc.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
