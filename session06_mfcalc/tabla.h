@@ -9,7 +9,11 @@
 #define __TABLA_H__
 /* Function type.  */
 typedef double (*func_t) (double);
-
+struct init
+{
+  char const *fname;
+  double (*fnct) (double);
+};
 /* Data type for links in the chain of symbols.  */
 struct symrec
 {
@@ -37,11 +41,7 @@ extern int yydebug;
 symrec *putsym (char const *, int);
 symrec *getsym (char const *);
 
-struct init
-{
-  char const *fname;
-  double (*fnct) (double);
-};
+
 
 
 /* Put arithmetic functions in table.  */

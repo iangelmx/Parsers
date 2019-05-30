@@ -31,7 +31,7 @@ struct init const arith_fncts[] =
   { "cos",  cos  },
   { "exp",  exp  },
   { "ln",   log  },
-  { "sin",  sin  },
+  { "seno",  sin  },
   { "sqrt", sqrt },
   { 0, 0 },
 };

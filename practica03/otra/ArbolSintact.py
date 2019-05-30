@@ -58,12 +58,12 @@ class ArbolSintactico:
     
     def __init__(self, post):
         
-        self.raiz = Node('cat', '.')  # Root is always concatenation of the regex with '#' mark.
-        self.leaves = dict()  # Keeping track of the labels of the leaves for convenience
-        self.id_contador = 1  # This variable is used to assign id to leaves.
-        # 1. Creating tree:
+        self.raiz = Node('cat', '.')  
+        self.leaves = dict()  
+        self.id_contador = 1  
+        #Se crea el arbol
         self.create_tree(post)
-        # 2. Finding the followpos of the tree and Nullable,Firstpos and Lastpos for each node:
+        #Se buscan siguientes, anulables, Primerpos and Ultimopos para cada nodo:
         self.followpos = [set() for i in range(self.id_contador)]
         self.postOrden_anulablePrimerPosUltimoPosSiguiente(self.raiz)
 
