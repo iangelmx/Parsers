@@ -14,6 +14,8 @@ init_table (void);
 %token <symrec*> VAR FNCT    /* Symbol table pointer: variable and function.  */
 %token <int> IF FINIF THEN
 %type  <double>  exp
+%type  <double>  selection_statement
+%type  <double>  exp_list
 
 
 %precedence '='
@@ -25,17 +27,37 @@ init_table (void);
 input:
 %empty
 | input line
-| selection_statement
 ;
 
 line:
 '\n'
 | exp '\n'   { printf ("R = %.10g ;\n", $1); }
 | error '\n' { yyerrok;                }
+| selection_statement { printf ("Rif = %.10g ;\n", $1); }
+;
+
+exp_list:
+exp '\n'
+|exp_list exp '\n'
 ;
 
 selection_statement:
-IF '(' exp ')' '{' input '}' { printf("Vi un if valido"); }
+IF exp THEN exp_list FINIF { printf("exp-> %g", $2); 
+                        if( $2 == 1){
+                          
+                          $$ = $4;
+                        }else{
+                          $$ = -99;
+                        }
+                      }
+|IF exp THEN '\n' exp_list '\n' FINIF { printf("exp-> %g", $2); 
+                                  if( $2 == 1){
+                                    
+                                    $$ = $5;
+                                  }else{
+                                    $$ = -99;
+                                  }
+                                }
 ;
 
 exp:
@@ -50,6 +72,8 @@ NUM                { $$ = $1;                         }
 | '-' exp  %prec NEG { $$ = -$2;                        }
 | exp '^' exp        { $$ = pow ($1, $3);               }
 | '(' exp ')'        { $$ = $2;                         }
+| exp '=' '=' exp    { $$ = $1 == $4; }
+| VAR '=' '=' exp    { $$ = $1->value.var == $4; }
 ;
 /* End of grammar.  */
 %%

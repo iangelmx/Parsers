@@ -12,9 +12,9 @@
 [0-9]+                  { yylval.NUM = atoi(yytext); return NUM;  }
 \n                      { return '\n'; }
 [ ]
-"if"                    { printf("Vi un if \n"); return IF; }
-"then"                  { printf("Vi un then \n"); return THEN; }
-"fin-\si"               { printf("Vi un fin-si \n"); return FINIF;}
+"if"                    { /*printf("Vi un if \n");*/ return IF; }
+"then"                  { /*printf("Vi un then \n");*/ return THEN; }
+"endif"               { /*printf("Vi un fin-si \n");*/ return FINIF;}
 
 [a-zA-Z]+            { 
                             symrec *s = getsym (yytext);
