@@ -1,177 +1,90 @@
-class State:
-    '''
-    Class for states that comprise the DFA
-    '''
+class Estado:
 
-    def __init__(self, alphabet, id_list, id, terminal_id):
-        '''
-        Constructor for class State
-        
-        Args:
-            alphabet: list containing alphabets used in regex (used in transitions of state) 
-            id_list: list, Each state in a DFA is a compound of few leaves, List contains these leaves
-            id: integer, id of the state
-            terminal_id: integer, the id of '#' leaf/ the end char of regex
-        '''
+    def __init__(self, alfabeto, id_list, id, terminal_id):
+
         self.id_set = set(id_list)
         self.id = id
-        self.transitions = dict()  # Dictionary to keep all the transitions to other states
-        self.final = terminal_id in self.id_set  # True if this is a final state
-        for a in alphabet:
-            self.transitions[a] = {}  # Each transitions from this state by a char is stored in a set
+        self.transitions = dict()  
+        self.final = terminal_id in self.id_set  
+        for a in alfabeto:
+            self.transitions[a] = {}  
 
 
-class DFA:
-    '''
-    Class representing the DFA that creates and store the DFA corresponding to the regex.
-    
-    Examples:
-        >>> t = Tree(['a', '*', 'b', '*', '+'])
-        >>> t
-        .
-        |
-        |___+
-        |	|
-        |	|___*___b
-        |	|
-        |	|___*___a
-        |
-        |___#
-        >>> d = DFA(alphabet=['a','b'],tree=t)
-        >>> d
-        ->	1 	a : 2 	b : 3 	Final State
-            2 	a : 2 	b : 4 	Final State
-            3 	a : 4 	b : 3 	Final State
-            4 	a : 4 	b : 4
+class AFD:
+    def __init__(self, alfabeto, arbol):
+        self.states = []  
+        self.alfabeto = alfabeto
+        self.id_contador = 1
+        self.terminal = arbol.id_contador - 1  
+        self.cuentaEstados(arbol)  
 
-    '''
-    def __init__(self, alphabet, tree):
-        '''
-        Constructor for class DFA.
-        
-        Args:
-            alphabet: list containing alphabets used in regex
-            tree: Tree, syntax tree of the regex with meta-data (nullable,firstpos,lastpo,followpos)
-        '''
-        self.states = []  # All the states in DFA containing State instances
-        self.alphabet = alphabet
-        self.id_counter = 1
-        self.terminal = tree.id_counter - 1  # '#' leaf is the end of regex and the id of it is assigned to terminal
-        self.compute_states(tree)  # constructs the DFA based on syntax tree
-
-    def compute_states(self, t):
-        '''
-        Constructs the DFA based on t, the syntax tree.
-        
-        Args:
-            t: Tree, the annotated syntax tree
-
-        Returns:
-            None
-
-        '''
-        D1 = State(self.alphabet, t.root.firstpos, self.give_next_id(), self.terminal)
+    def cuentaEstados(self, t):
+        D1 = Estado(self.alfabeto, t.raiz.firstpos, self.give_next_id(), self.terminal)
         self.states.append(D1)
         queue = [D1]
-        while len(queue) > 0:  # Finds the transitions to all states
+        while len(queue) > 0:  
             st = queue.pop(0)
             new_states = self.Dtran(st, t)
             for s in new_states:
-                state = State(self.alphabet, s, self.give_next_id(), self.terminal)
-                self.states.append(state)
-                queue.append(state)
+                estado = Estado(self.alfabeto, s, self.give_next_id(), self.terminal)
+                self.states.append(estado)
+                queue.append(estado)
         return
 
-    def Dtran(self, state, tree):
-        '''
-        This function finds all the transitions by the alphabet from state (for details refer to documentation.md)
-        
-        Args:
-            state: State 
-            tree: Tree, the annotated syntax tree
-
-        Returns:
-            list of all the leaves that state goes to that together form a state
-        '''
+    def Dtran(self, estado, arbol):
         new_states = []
-        for i in state.id_set:
+        for i in estado.id_set:
             if i == self.terminal:
                 continue
-            label = tree.leaves[i]
-            if state.transitions[label] == {}:
-                state.transitions[label] = tree.followpos[i]
+            label = arbol.leaves[i]
+            if estado.transitions[label] == {}:
+                estado.transitions[label] = arbol.followpos[i]
             else:
-                state.transitions[label] = state.transitions[label].union(tree.followpos[i])
-        for a in self.alphabet:
-            if state.transitions[a] != {}:
+                estado.transitions[label] = estado.transitions[label].union(arbol.followpos[i])
+        for a in self.alfabeto:
+            if estado.transitions[a] != {}:
                 new = True
                 for s in self.states:
-                    if s.id_set == state.transitions[a] or state.transitions[a] in new_states:
+                    if s.id_set == estado.transitions[a] or estado.transitions[a] in new_states:
                         new = False
                 if new:
-                    new_states.append(state.transitions[a])
+                    new_states.append(estado.transitions[a])
         return new_states
 
-    def post_processing(self):
-        '''
-        The post processing step to make the printing of the DFA more appealing.
-        This function is not necessary to use.
-        
-        Returns:
-            None
-        '''
-        has_none_state = False
-        for state in self.states:
-            for a in self.alphabet:
-                if state.transitions[a] == {}:
-                    has_none_state = True
-                    state.transitions[a] = self.id_counter
-                SET = state.transitions[a]
+    def post_procesamiento(self):
+        sinEstado = False
+        for estado in self.states:
+            for a in self.alfabeto:
+                if estado.transitions[a] == {}:
+                    sinEstado = True
+                    estado.transitions[a] = self.id_contador
+                SET = estado.transitions[a]
                 for state2 in self.states:
                     if state2.id_set == SET:
-                        state.transitions[a] = state2.id
-        if has_none_state:
-            self.states.append(State(self.alphabet, [], self.id_counter, self.terminal))
-            for a in self.alphabet:
+                        estado.transitions[a] = state2.id
+        if sinEstado:
+            self.states.append(Estado(self.alfabeto, [], self.id_contador, self.terminal))
+            for a in self.alfabeto:
                 self.states[-1].transitions[a] = self.states[-1].id
 
     def give_next_id(self):
-        '''
-        This function simply increments self.id_counter and return its previous value
-
-        Returns: 
-            self.id_counter
-
-        '''
-        id = self.id_counter
-        self.id_counter += 1
+        id = self.id_contador
+        self.id_contador += 1
         return id
 
     def __str__(self):
-        '''
-        This function prints out the DFA
-        
-        Returns:
-            None
-        Examples:
-            >>> D.print_DFA()
-            ->	1	a : 2	b : 3	Final State
-                2	a : 2	b : 4	Final State
-                3	a : 4	b : 3	Final State
-                4	a : 4	b : 4	
-        '''
-        self.post_processing()
+        self.post_procesamiento()
         s = ''
-        for state in self.states:
-            if state.id == 1:
+        for estado in self.states:
+            if estado.id == 1:
                 s = s+'->\t'
             else:
                 s = s+'\t'
-            s= s+str(state.id)+' \t'
-            for a in self.alphabet:
-                s=s+str(a)+' : '+str(state.transitions[a])+' \t'
-            if state.final:
-                s=s+"Final State"
+            s= s+str(estado.id)+' \t'
+            for a in self.alfabeto:
+                s=s+str(a)+' : '+str(estado.transitions[a])+' \t'
+            if estado.final:
+                s=s+"Edo. Final"
             s+='\n'
         return s
 
